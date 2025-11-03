@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaration of Interests - Form Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+        /* Header */
+        .header {
+            background-color: #003399;
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .header .instructions {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .header .last-updated {
+            font-size: 13px;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        /* Personal Info Card */
+        .personal-info {
+            background-color: #e8eef7;
+            border-left: 4px solid #003399;
+            padding: 30px;
+            margin: 30px 40px;
+        }
+
+        .personal-info h2 {
+            color: #003399;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        /* Form Container */
+        .form-container {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .container-header {
+            background-color: #f0f4f8;
+            padding: 30px 40px;
+            border-bottom: 2px solid #003399;
+        }
+
+        .container-type {
+            color: #003399;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .container-description {
+            font-size: 14px;
+            color: #ff0000;
+            font-style: italic;
+        }
+
+        /* Section */
+        .section {
+            padding: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            color: #4d4d4d;
+            line-height: 1.6;
+        }
+
+        /* Form Items */
+        .form-items {
+            margin-bottom: 30px;
+        }
+
+        .form-item {
+            background-color: #fafafa;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-item-number {
+            display: inline-block;
+            background-color: #003399;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-row-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #bfbfbf;
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: inherit;
+            color: #333;
+            background-color: white;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #003399;
+            box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 18px;
+            padding-right: 35px;
+        }
+
+        /* Radio buttons */
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        /* Multi-select */
+        .multi-select {
+            border: 1px solid #bfbfbf;
+            border-radius: 3px;
+            padding: 12px;
+            background-color: white;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .multi-select-label {
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .multi-select-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.15s;
+        }
+
+        .multi-select-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .multi-select-option input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .multi-select-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            flex: 1;
+        }
+
+        /* Conditional field */
+        .conditional-field {
+            background-color: #fff9e6;
+            border-left: 3px solid #ffcc00;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+
+        /* Buttons */
+        .add-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: white;
+            border: 2px solid #003399;
+            color: #003399;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .add-button:hover {
+            background-color: #003399;
+            color: white;
+        }
+
+        .add-button::before {
+            content: '+';
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Submit section */
+        .submit-section {
+            background-color: #f5f5f5;
+            padding: 30px 40px;
+            text-align: right;
+        }
+
+        .submit-button {
+            padding: 14px 40px;
+            background-color: #003399;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-button:hover {
+            background-color: #002266;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row-inline {
+                grid-template-columns: 1fr;
+            }
+
+            .header, .section {
+                padding: 30px 20px;
+            }
+
+            .container-header {
+                padding: 20px;
+            }
+
+            .personal-info {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Declaration of Interests</h1>
+            <div class="instructions">
+                This form must be completed by all Parliamentary Members. Please ensure all information is accurate and up-to-date. 
+                The declaration should include all interests that might be perceived as influencing your parliamentary duties.
+            </div>
+            <div class="last-updated">Last updated: November 3, 2025</div>
+        </div>
+
+        <!-- Personal Information Card -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <div class="info-value">Dr. Sophie Laurent</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Function</div>
+                    <div class="info-value">Parliamentary Member</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Country</div>
+                    <div class="info-value">France</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pre-Form Container: Specific Roles -->
+        <div class="form-container">
+            <div class="container-header">
+                <div class="container-type">Pre-form | Specific Roles</div>
+                <div class="container-description">
+                    Before accessing the declaration of interests, please make sure all your specific roles are listed.
+                </div>
+            </div>
+
+            <!-- Section A -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <strong>A.</strong> President or Vice-President of the Assembly, Chairperson or Vice-Chairperson of a 
+                        committee, sub-committee, network, platform or alliance; and Chairperson of a political group.
+                    </div>
+                </div>
+
+                <div class="form-items">
+                    <!-- Item 1 -->
+                    <div class="form-item">
+                        <div class="form-item-number">1</div>
+                        <div class="form-row">
+                            <label for="role-1">Role</label>
+                            <select id="role-1">
+                                <option value="">Select a role...</option>
+                                <option value="president" selected>President of the Assembly</option>
+                                <option value="vice-president">Vice-President of the Assembly</option>
+                                <option value="chairperson-committee">Chairperson of a Committee</option>
+                                <option value="vice-chairperson-committee">Vice-Chairperson of a Committee</option>
+                                <option value="chairperson-subcommittee">Chairperson of a Sub-committee</option>
+                                <option value="chairperson-network">Chairperson of a Network</option>
+                                <option value="chairperson-platform">Chairperson of a Platform</option>
+                                <option value="chairperson-alliance">Chairperson of an Alliance</option>
+                                <option value="chairperson-political">Chairperson of a Political Group</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="description-1">Description</label>
+                            <input type="text" id="description-1" placeholder="Brief description of the role" value="Leading the Assembly sessions and coordinating committee activities">
+                        </div>
+                        <div class="form-row form-row-inline">
+                            <div>
+                                <label for="start-date-1">Start date</label>
+                                <input type="date" id="start-date-1" value="2024-01-15">
+                            </div>
+                            <div>
+                                <label for="end-date-1">End date</label>
+                                <input type="date" id="end-date-1" placeholder="Leave empty if ongoing">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="form-item">
+                        <div class="form-item-number">2</div>
+                        <div class="form-row">
+                            <label for="role-2">Role</label>
+                            <select id="role-2">
+                                <option value="">Select a role...</option>
+                                <option value="president">President of the Assembly</option>
+                                <option value="vice-president">Vice-President of the Assembly</option>
+                                <option value="chairperson-committee" selected>Chairperson of a Committee</option>
+                                <option value="vice-chairperson-committee">Vice-Chairperson of a Committee</option>
+                                <option value="chairperson-subcommittee">Chairperson of a Sub-committee</option>
+                                <option value="chairperson-network">Chairperson of a Network</option>
+                                <option value="chairperson-platform">Chairperson of a Platform</option>
+                                <option value="chairperson-alliance">Chairperson of an Alliance</option>
+                                <option value="chairperson-political">Chairperson of a Political Group</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="description-2">Description</label>
+                            <input type="text" id="description-2" placeholder="Brief description of the role" value="Committee on Social Affairs and Health">
+                        </div>
+                        <div class="form-row form-row-inline">
+                            <div>
+                                <label for="start-date-2">Start date</label>
+                                <input type="date" id="start-date-2" value="2023-06-01">
+                            </div>
+                            <div>
+                                <label for="end-date-2">End date</label>
+                                <input type="date" id="end-date-2" placeholder="Leave empty if ongoing">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-button">Add new line</button>
+            </div>
+        </div>
+
+        <!-- Form Container: Declaration of Interests -->
+        <div class="form-container">
+            <div class="container-header">
+                <div class="container-type">Form | Declaration of Interests</div>
+                <div class="container-description">
+                    The declaration of interests form should be filled by every Parliamentary Member, regardless of your roles.
+                </div>
+            </div>
+
+            <!-- Section B -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <strong>B.</strong> Activities and interests outside the Assembly (professional, financial, or other) that 
+                        might be perceived as influencing the performance of your duties as a Parliamentary Member.
+                    </div>
+                </div>
+
+                <div class="form-items">
+                <!-- Item 1 -->
+                <div class="form-item">
+                    <div class="form-item-number">1</div>
+                    <div class="form-row">
+                        <label for="interest-role-1">Role or Activity</label>
+                        <input type="text" id="interest-role-1" placeholder="Describe the role or activity" value="Board Member at European Health Foundation">
+                    </div>
+                    <div class="form-row form-row-inline">
+                        <div>
+                            <label for="interest-start-1">Start date</label>
+                            <input type="date" id="interest-start-1" value="2022-03-01">
+                        </div>
+                        <div>
+                            <label for="interest-end-1">End date</label>
+                            <input type="date" id="interest-end-1" placeholder="Leave empty if ongoing">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>Does this interest cause a conflict with any specific roles?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="conflict-yes-1" name="conflict-1" checked>
+                                <label for="conflict-yes-1">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="conflict-no-1" name="conflict-1">
+                                <label for="conflict-no-1">No</label>
+                            </div>
+                        </div>
+                        <div class="multi-select-label">Please select the role(s) concerned by the conflict of interest</div>
+                        <div class="multi-select">
+                            <div class="multi-select-option">
+                                <input type="checkbox" id="conflict-1-1">
+                                <label for="conflict-1-1">President of the Assembly</label>
+                            </div>
+                            <div class="multi-select-option">
+                                <input type="checkbox" id="conflict-1-2" checked>
+                                <label for="conflict-1-2">Chairperson of Committee on Social Affairs and Health</label>
+                            </div>
+                            <div class="multi-select-option">
+                                <input type="checkbox" id="conflict-1-3">
+                                <label for="conflict-1-3">Vice-Chairperson of Sub-committee on Public Health</label>
+                            </div>
+                            <div class="multi-select-option">
+                                <input type="checkbox" id="conflict-1-4">
+                                <label for="conflict-1-4">Chairperson of European Alliance for Healthcare</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conditional-field">
+                        <label for="manage-conflict-1">Please explain how you will manage that interest</label>
+                        <textarea id="manage-conflict-1" placeholder="Describe your strategy for managing potential conflicts of interest">I will recuse myself from any committee votes or discussions directly related to funding or policy decisions affecting the European Health Foundation. I will declare this interest at the beginning of relevant sessions and ensure transparency in all proceedings.</textarea>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="form-item">
+                    <div class="form-item-number">2</div>
+                    <div class="form-row">
+                        <label for="interest-role-2">Role or Activity</label>
+                        <input type="text" id="interest-role-2" placeholder="Describe the role or activity" value="Consultant for Pharmaceutical Research Institute">
+                    </div>
+                    <div class="form-row form-row-inline">
+                        <div>
+                            <label for="interest-start-2">Start date</label>
+                            <input type="date" id="interest-start-2" value="2021-09-15">
+                        </div>
+                        <div>
+                            <label for="interest-end-2">End date</label>
+                            <input type="date" id="interest-end-2" value="2024-09-15">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>Does this interest cause a conflict with any specific roles?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="conflict-yes-2" name="conflict-2">
+                                <label for="conflict-yes-2">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="conflict-no-2" name="conflict-2" checked>
+                                <label for="conflict-no-2">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="form-item">
+                    <div class="form-item-number">3</div>
+                    <div class="form-row">
+                        <label for="interest-role-3">Role or Activity</label>
+                        <input type="text" id="interest-role-3" placeholder="Describe the role or activity">
+                    </div>
+                    <div class="form-row form-row-inline">
+                        <div>
+                            <label for="interest-start-3">Start date</label>
+                            <input type="date" id="interest-start-3">
+                        </div>
+                        <div>
+                            <label for="interest-end-3">End date</label>
+                            <input type="date" id="interest-end-3" placeholder="Leave empty if ongoing">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>Does this interest cause a conflict with any specific roles?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="conflict-yes-3" name="conflict-3">
+                                <label for="conflict-yes-3">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="conflict-no-3" name="conflict-3" checked>
+                                <label for="conflict-no-3">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <button class="add-button">Add new line</button>
+            </div>
+        </div>
+
+        <!-- Submit Section -->
+        <div class="submit-section">
+            <button class="submit-button">Submit Declaration</button>
+        </div>
+    </div>
+</body>
+</html>
