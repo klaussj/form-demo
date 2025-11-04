@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaration of Interests - Complex Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+        /* Header */
+        .header {
+            background-color: #003399;
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .header .instructions {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .header .last-updated {
+            font-size: 13px;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        /* Personal Info Card */
+        .personal-info {
+            background-color: #e8eef7;
+            border-left: 4px solid #003399;
+            padding: 30px;
+            margin: 30px 40px;
+        }
+
+        .personal-info h2 {
+            color: #003399;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        /* Form Container */
+        .form-container {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .container-header {
+            background-color: #f0f4f8;
+            padding: 30px 40px;
+            border-bottom: 2px solid #003399;
+        }
+
+        .container-type {
+            color: #003399;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .container-description {
+            font-size: 14px;
+            color: #ff0000;
+            font-style: italic;
+        }
+
+        /* Section */
+        .section {
+            padding: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            color: #4d4d4d;
+            line-height: 1.6;
+        }
+
+        /* Form Items */
+        .form-items {
+            margin-bottom: 30px;
+        }
+
+        .form-item {
+            background-color: #fafafa;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-item-number {
+            display: inline-block;
+            background-color: #003399;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-row-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row-triple {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #bfbfbf;
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: inherit;
+            color: #333;
+            background-color: white;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #003399;
+            box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 18px;
+            padding-right: 35px;
+        }
+
+        /* Radio buttons */
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        /* Multi-select */
+        .multi-select {
+            border: 1px solid #bfbfbf;
+            border-radius: 3px;
+            padding: 12px;
+            background-color: white;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .multi-select-label {
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .multi-select-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.15s;
+        }
+
+        .multi-select-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .multi-select-option input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .multi-select-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            flex: 1;
+        }
+
+        /* Conditional field */
+        .conditional-field {
+            background-color: #fff9e6;
+            border-left: 3px solid #ffcc00;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+
+        /* Nested items */
+        .nested-items {
+            background-color: #f0f7ff;
+            border: 2px solid #6699cc;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nested-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .nested-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .nested-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .nested-item-number {
+            display: inline-block;
+            background-color: #6699cc;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .nested-item-title {
+            font-size: 13px;
+            color: #003399;
+            font-weight: 600;
+        }
+
+        .sub-nested-items {
+            background-color: #ffe8f0;
+            border: 2px solid #cc6699;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .sub-nested-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .sub-nested-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-nested-item-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .sub-nested-item-number {
+            display: inline-block;
+            background-color: #cc6699;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .sub-nested-item-title {
+            font-size: 12px;
+            color: #990066;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .add-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: white;
+            border: 2px solid #003399;
+            color: #003399;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .add-button:hover {
+            background-color: #003399;
+            color: white;
+        }
+
+        .add-button::before {
+            content: '+';
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .add-button-nested {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background-color: white;
+            border: 2px solid #6699cc;
+            color: #6699cc;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .add-button-nested:hover {
+            background-color: #6699cc;
+            color: white;
+        }
+
+        .add-button-nested::before {
+            content: '+';
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .add-button-sub-nested {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background-color: white;
+            border: 2px solid #cc6699;
+            color: #cc6699;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .add-button-sub-nested:hover {
+            background-color: #cc6699;
+            color: white;
+        }
+
+        .add-button-sub-nested::before {
+            content: '+';
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* Confirmation checkbox */
+        .confirmation-row {
+            background-color: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .confirmation-option {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+
+        .confirmation-option input[type="checkbox"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .confirmation-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Submit section */
+        .submit-section {
+            background-color: #f5f5f5;
+            padding: 30px 40px;
+            text-align: right;
+        }
+
+        .submit-button {
+            padding: 14px 40px;
+            background-color: #003399;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-button:hover {
+            background-color: #002266;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row-inline,
+            .form-row-triple {
+                grid-template-columns: 1fr;
+            }
+
+            .header, .section {
+                padding: 30px 20px;
+            }
+
+            .container-header {
+                padding: 20px;
+            }
+
+            .personal-info {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+
+        /* Question styling */
+        .question-row {
+            margin-bottom: 20px;
+        }
+
+        .question-label {
+            display: block;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .footnote {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Declaration of Interests</h1>
+            <div class="instructions">
+                This form must be completed by all Parliamentary Members. Please ensure all information is accurate and up-to-date. 
+                The declaration should include all interests that might be perceived as influencing your parliamentary duties.
+            </div>
+            <div class="last-updated">Last updated: November 3, 2025</div>
+        </div>
+
+        <!-- Personal Information Card -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <div class="info-value">Dr. Sophie Laurent</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Function</div>
+                    <div class="info-value">Parliamentary Member</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Country</div>
+                    <div class="info-value">France</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="container-header">
+                <div class="container-type">Pre-form | Specific roles</div>
+            </div>
+
+            <!-- Section K -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <strong>K.</strong> Election Observation Roles
+                    </div>
+                </div>
+
+                <div class="form-items">
+                    <!-- Main Item 1 -->
+                    <div class="form-item">
+                        <div class="form-item-number">1</div>
+                        
+                        <!-- Question a -->
+                        <div class="question-row">
+                            <label class="question-label">a. Are you a candidate for a role in the Parliamentary Assembly as member of an ad hoc committee for the observation of elections?</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="candidate-yes-1" name="candidate-1" checked>
+                                    <label for="candidate-yes-1">Yes</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="candidate-no-1" name="candidate-1">
+                                    <label for="candidate-no-1">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conditional fields for Yes -->
+                        <div class="conditional-field">
+                            <!-- Question b -->
+                            <div class="form-row">
+                                <label for="observation-desc-1">b. Description of election observation</label>
+                                <textarea id="observation-desc-1" placeholder="Ad hoc committee to observe the [parliamentary/presidential] elections in [country] on [date].">Ad hoc committee to observe the parliamentary elections in Poland on March 15, 2026.</textarea>
+                            </div>
+
+                            <!-- Question c -->
+                            <div class="question-row">
+                                <label class="question-label">c. Have you declared in your declaration of interests in Part I (i) all interests connected with the country concerned by this election observation; and (ii) all interests which might influence the performance of your duties as a member of this election observation mission?<span class="footnote"><sup>1</sup></span></label>
+                                <div class="footnote">1. This includes financial, professional, political or personal interests.</div>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="declared-yes-1" name="declared-1" checked>
+                                        <label for="declared-yes-1">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="declared-no-1" name="declared-1">
+                                        <label for="declared-no-1">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Question d -->
+                            <div class="question-row">
+                                <label class="question-label">d. Are any of your interests relevant for that role? [This includes any interests that might be perceived as influencing the performance of your duties as a member of this election observation mission].</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="relevant-yes-1" name="relevant-1" checked>
+                                        <label for="relevant-yes-1">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="relevant-no-1" name="relevant-1">
+                                        <label for="relevant-no-1">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nested items for relevant interests -->
+                            <div class="nested-items">
+                                <div class="nested-item-header" style="border: none; padding: 0; margin-bottom: 15px;">
+                                    <div class="nested-item-title">Relevant Interests</div>
+                                </div>
+
+                                <!-- Nested Item 1 -->
+                                <div class="nested-item">
+                                    <div class="nested-item-header">
+                                        <div class="nested-item-number">i</div>
+                                        <div class="nested-item-title">Relevant Interest #1</div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label for="interest-select-1-1">i. Please select the relevant interest<span class="footnote"><sup>2</sup></span></label>
+                                        <div class="footnote">2. Select from interests declared in Part I of your declaration.</div>
+                                        <select id="interest-select-1-1">
+                                            <option value="">Select an interest from Part I...</option>
+                                            <option value="interest-1" selected>Board Member at European Health Foundation</option>
+                                            <option value="interest-2">Consultant for Pharmaceutical Research Institute</option>
+                                            <option value="interest-3">Advisory role at Tech Innovation Corp</option>
+                                            <option value="interest-4">Investment in Green Energy Partners</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="manage-interest-1-1">ii. How will you manage that interest?</label>
+                                        <textarea id="manage-interest-1-1" placeholder="Explain how you will manage this interest during the election observation mission">I will ensure full transparency by disclosing this connection at the beginning of the mission and will abstain from any discussions or decisions where this interest could create a perceived conflict with my observation duties.</textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Nested Item 2 -->
+                                <div class="nested-item">
+                                    <div class="nested-item-header">
+                                        <div class="nested-item-number">ii</div>
+                                        <div class="nested-item-title">Relevant Interest #2</div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label for="interest-select-1-2">i. Please select the relevant interest</label>
+                                        <select id="interest-select-1-2">
+                                            <option value="">Select an interest from Part I...</option>
+                                            <option value="interest-1">Board Member at European Health Foundation</option>
+                                            <option value="interest-2" selected>Consultant for Pharmaceutical Research Institute</option>
+                                            <option value="interest-3">Advisory role at Tech Innovation Corp</option>
+                                            <option value="interest-4">Investment in Green Energy Partners</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="manage-interest-1-2">ii. How will you manage that interest?</label>
+                                        <textarea id="manage-interest-1-2" placeholder="Explain how you will manage this interest during the election observation mission">This consultancy ended before the observation mission, but I will still declare it for transparency purposes and ensure it does not influence my assessment of the electoral process.</textarea>
+                                    </div>
+                                </div>
+
+                                <button class="add-button-nested">Add relevant interest</button>
+                            </div>
+
+                            <!-- Question e -->
+                            <div class="question-row">
+                                <label class="question-label">e. Did you take part, in the last ten years, in any non-official missions<span class="footnote"><sup>3</sup></span> conducted for the purpose of observing elections or in connection with elections in the country concerned?</label>
+                                <div class="footnote">3. Non-official missions refer to observation missions not organized by PACE or other official parliamentary or governmental bodies.</div>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="non-official-yes-1" name="non-official-1" checked>
+                                        <label for="non-official-yes-1">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="non-official-no-1" name="non-official-1">
+                                        <label for="non-official-no-1">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sub-nested items for non-official missions -->
+                            <div class="sub-nested-items">
+                                <div class="sub-nested-item-header" style="border: none; padding: 0; margin-bottom: 12px;">
+                                    <div class="sub-nested-item-title">Non-Official Election Observation Missions</div>
+                                </div>
+
+                                <!-- Sub-nested Item 1 -->
+                                <div class="sub-nested-item">
+                                    <div class="sub-nested-item-header">
+                                        <div class="sub-nested-item-number">1</div>
+                                        <div class="sub-nested-item-title">Mission #1</div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="mission-place-1-1">i. Place of election observation</label>
+                                        <input type="text" id="mission-place-1-1" placeholder="Country or region" value="Warsaw, Poland">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="mission-date-1-1">ii. Date of election observation</label>
+                                        <input type="date" id="mission-date-1-1" value="2021-10-24">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="mission-sponsor-1-1">iii. Name of the State, parliamentary, governmental or non-governmental organisation, association, foundation or other natural or legal person which invited or sponsored you</label>
+                                        <input type="text" id="mission-sponsor-1-1" placeholder="Name of sponsoring organization" value="Democracy Watch International (NGO)">
+                                    </div>
+                                </div>
+
+                                <!-- Sub-nested Item 2 -->
+                                <div class="sub-nested-item">
+                                    <div class="sub-nested-item-header">
+                                        <div class="sub-nested-item-number">2</div>
+                                        <div class="sub-nested-item-title">Mission #2</div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="mission-place-1-2">i. Place of election observation</label>
+                                        <input type="text" id="mission-place-1-2" placeholder="Country or region" value="Krakow, Poland">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="mission-date-1-2">ii. Date of election observation</label>
+                                        <input type="date" id="mission-date-1-2" value="2019-05-26">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="mission-sponsor-1-2">iii. Name of the State, parliamentary, governmental or non-governmental organisation, association, foundation or other natural or legal person which invited or sponsored you</label>
+                                        <input type="text" id="mission-sponsor-1-2" placeholder="Name of sponsoring organization" value="European Electoral Integrity Foundation">
+                                    </div>
+                                </div>
+
+                                <button class="add-button-sub-nested">Add non-official mission</button>
+                            </div>
+
+                            <!-- Question f - Confirmation -->
+                            <div class="confirmation-row">
+                                <div class="confirmation-option">
+                                    <input type="checkbox" id="confirmation-1" checked>
+                                    <label for="confirmation-1">f. I confirm that I have taken notice of and undertake to respect the PACE Guidelines for the observation of elections, including the Code of conduct for International Election Observation Missions.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Item 2 (Empty template) -->
+                    <div class="form-item">
+                        <div class="form-item-number">2</div>
+                        
+                        <!-- Question a -->
+                        <div class="question-row">
+                            <label class="question-label">a. Are you a candidate for a role in the Parliamentary Assembly as member of an ad hoc committee for the observation of elections?</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="candidate-yes-2" name="candidate-2">
+                                    <label for="candidate-yes-2">Yes</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="candidate-no-2" name="candidate-2" checked>
+                                    <label for="candidate-no-2">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Item 3 -->
+                    <div class="form-item">
+                        <div class="form-item-number">3</div>
+                        
+                        <!-- Question a -->
+                        <div class="question-row">
+                            <label class="question-label">a. Are you a candidate for a role in the Parliamentary Assembly as member of an ad hoc committee for the observation of elections?</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="candidate-yes-3" name="candidate-3" checked>
+                                    <label for="candidate-yes-3">Yes</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="candidate-no-3" name="candidate-3">
+                                    <label for="candidate-no-3">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conditional fields for Yes -->
+                        <div class="conditional-field">
+                            <!-- Question b -->
+                            <div class="form-row">
+                                <label for="observation-desc-3">b. Description of election observation</label>
+                                <textarea id="observation-desc-3" placeholder="Ad hoc committee to observe the [parliamentary/presidential] elections in [country] on [date].">Ad hoc committee to observe the presidential elections in Ukraine on April 21, 2026.</textarea>
+                            </div>
+
+                            <!-- Question c -->
+                            <div class="question-row">
+                                <label class="question-label">c. Have you declared in your declaration of interests in Part I (i) all interests connected with the country concerned by this election observation; and (ii) all interests which might influence the performance of your duties as a member of this election observation mission?<span class="footnote"><sup>1</sup></span></label>
+                                <div class="footnote">1. This includes financial, professional, political or personal interests.</div>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="declared-yes-3" name="declared-3" checked>
+                                        <label for="declared-yes-3">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="declared-no-3" name="declared-3">
+                                        <label for="declared-no-3">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Question d -->
+                            <div class="question-row">
+                                <label class="question-label">d. Are any of your interests relevant for that role? [This includes any interests that might be perceived as influencing the performance of your duties as a member of this election observation mission].</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="relevant-yes-3" name="relevant-3" checked>
+                                        <label for="relevant-yes-3">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="relevant-no-3" name="relevant-3">
+                                        <label for="relevant-no-3">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nested items for relevant interests -->
+                            <div class="nested-items">
+                                <div class="nested-item-header" style="border: none; padding: 0; margin-bottom: 15px;">
+                                    <div class="nested-item-title">Relevant Interests</div>
+                                </div>
+
+                                <!-- Nested Item 1 -->
+                                <div class="nested-item">
+                                    <div class="nested-item-header">
+                                        <div class="nested-item-number">i</div>
+                                        <div class="nested-item-title">Relevant Interest #1</div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label for="interest-select-3-1">i. Please select the relevant interest<span class="footnote"><sup>2</sup></span></label>
+                                        <div class="footnote">2. Select from interests declared in Part I of your declaration.</div>
+                                        <select id="interest-select-3-1">
+                                            <option value="">Select an interest from Part I...</option>
+                                            <option value="interest-1">Board Member at European Health Foundation</option>
+                                            <option value="interest-2">Consultant for Pharmaceutical Research Institute</option>
+                                            <option value="interest-3" selected>Advisory role at Tech Innovation Corp</option>
+                                            <option value="interest-4">Investment in Green Energy Partners</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="manage-interest-3-1">ii. How will you manage that interest?</label>
+                                        <textarea id="manage-interest-3-1" placeholder="Explain how you will manage this interest during the election observation mission">I will disclose this advisory role at the start of the mission and ensure that any technology-related discussions are handled by other team members to avoid any perceived conflict of interest.</textarea>
+                                    </div>
+                                </div>
+
+                                <button class="add-button-nested">Add relevant interest</button>
+                            </div>
+
+                            <!-- Question e -->
+                            <div class="question-row">
+                                <label class="question-label">e. Did you take part, in the last ten years, in any non-official missions<span class="footnote"><sup>3</sup></span> conducted for the purpose of observing elections or in connection with elections in the country concerned?</label>
+                                <div class="footnote">3. Non-official missions refer to observation missions not organized by PACE or other official parliamentary or governmental bodies.</div>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="non-official-yes-3" name="non-official-3">
+                                        <label for="non-official-yes-3">Yes</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="non-official-no-3" name="non-official-3" checked>
+                                        <label for="non-official-no-3">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Question f - Confirmation -->
+                            <div class="confirmation-row">
+                                <div class="confirmation-option">
+                                    <input type="checkbox" id="confirmation-3" checked>
+                                    <label for="confirmation-3">f. I confirm that I have taken notice of and undertake to respect the PACE Guidelines for the observation of elections, including the Code of conduct for International Election Observation Missions.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-button">Add election observation role</button>
+            </div>
+        </div>
+
+        <!-- Submit Section -->
+        <div class="submit-section">
+            <button class="submit-button">Submit Declaration</button>
+        </div>
+    </div>
+</body>
+</html>
