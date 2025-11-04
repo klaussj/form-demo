@@ -145,7 +145,7 @@
 
         /* Section */
         .section {
-            padding: 40px;
+            padding: 0 40px 40px 40px;
             border-bottom: 3px solid #e8eef7;
             background-color: transparent;
         }
@@ -156,9 +156,14 @@
 
         .section-header {
             margin-bottom: 30px;
+            padding-top: 20px;
             padding-bottom: 20px;
             border-bottom: 2px solid #d0d7e0;
             background-color: white; /* Ensures text is readable when floating */
+            margin-left: -40px;
+            margin-right: -40px;
+            padding-left: 40px;
+            padding-right: 40px;
         }
 
         .section-title {
@@ -425,6 +430,13 @@
             .personal-info {
                 margin: 20px;
                 padding: 20px;
+            }
+
+            .section-header {
+                margin-left: -20px;
+                margin-right: -20px;
+                padding-left: 20px;
+                padding-right: 20px;
             }
         }
     </style>
